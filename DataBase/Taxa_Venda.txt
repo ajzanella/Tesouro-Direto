@@ -1,0 +1,26 @@
+Nome	DataVenc	dt20102016	dt21102016	dt24102016
+Tesouro IGPM+ com Juros Semestrais 2017 (NTNC)	01072017	6,67	6,68	6,65
+Tesouro IGPM+ com Juros Semestrais 2021 (NTNC)	01042021	5,91	5,95	5,92
+Tesouro IGPM+ com Juros Semestrais 2031 (NTNC)	01012031	5,64	5,69	5,66
+Tesouro IPCA+ 2019 (NTNB Princ)	15052019	6,06	6,1	6,04
+Tesouro IPCA+ 2024 (NTNB Princ)	15082024	5,76	5,81	5,78
+Tesouro IPCA+ 2035 (NTNB Princ)	15052035	5,61	5,68	5,63
+Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)	15052017	6,85	6,86	6,83
+Tesouro IPCA+ com Juros Semestrais 2020 (NTNB)	15082020	5,94	5,97	5,94
+Tesouro IPCA+ com Juros Semestrais 2024 (NTNB)	15082024	5,79	5,84	5,81
+Tesouro IPCA+ com Juros Semestrais 2026 (NTNB)	15082026	5,76	5,82	5,78
+Tesouro IPCA+ com Juros Semestrais 2035 (NTNB)	15052035	5,65	5,71	5,67
+Tesouro IPCA+ com Juros Semestrais 2045 (NTNB)	15052045	5,69	5,74	5,71
+Tesouro IPCA+ com Juros Semestrais 2050 (NTNB)	15082050	5,63	5,67	5,65
+Tesouro Prefixado 2017 (LTN)	01012017	13,75	13,77	13,76
+Tesouro Prefixado 2018 (LTN)	01012018	12,15	12,24	12,21
+Tesouro Prefixado 2019 (LTN)	01012019	11,41	11,54	11,47
+Tesouro Prefixado 2021 (LTN)	01012021	11,16	11,3	11,19
+Tesouro Prefixado 2023 (LTN)	01012023	11,23	11,37	11,23
+Tesouro Prefixado com Juros Semestrais 2017 (NTNF)	01012017	13,76	13,77	13,78
+Tesouro Prefixado com Juros Semestrais 2021 (NTNF)	01012021	11,1	11,24	11,14
+Tesouro Prefixado com Juros Semestrais 2023 (NTNF)	01012023	11,13	11,28	11,14
+Tesouro Prefixado com Juros Semestrais 2025 (NTNF)	01012025	11,04	11,18	11,07
+Tesouro Prefixado com Juros Semestrais 2027 (NTNF)	01012027	11,1	11,23	11,12
+Tesouro Selic 2017 (LFT)	07032017	0,01	0,01	0,01
+Tesouro Selic 2021 (LFT)	01032021	0,08	0,08	0,08
