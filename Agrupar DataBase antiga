@@ -17,61 +17,80 @@ library(readxl)
 library(janitor)
 
 setwd("C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Historic")
+diretorio <- getwd()
+Cabecalho = vencimentos(diretorio)
+n_pasta = 1
+n_cabecalho = 1 #nao inicia no while pq devo preencher todo array sem reiniciar, mas vou limitar as iteracoes filtrando o nome
+Titulos<-cbind(as.matrix(paste(list.files(getwd(),full.names = FALSE, recursive = FALSE)," ",sep="")), matrix(0,nrow=length(as.matrix(paste(list.files(getwd(),full.names = FALSE, recursive = FALSE)," ",sep="")))))
+#Titulos<-cbind(as.matrix(paste(list.files(getwd(),full.names = FALSE, recursive = FALSE)," ",sep="")), matrix(0,nrow=length(as.matrix(paste(list.files(getwd(),full.names = FALSE, recursive = FALSE)," ",sep="")))))
 i=1
-while (i <= length(list.files(getwd(),full.names = FALSE, recursive = FALSE))){
-	j=1
-	while (j<=length(list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE))){
-
-		#Abrir cada excel e destinar para cada tabela. Compra, venda (Taxa e Valor)
-
-		#list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j]
-
-		#dir
-		#paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/")
-
-		lim = 1
-		while (lim <= 10){
-			read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E"))
-
-			names(read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2]
-			nData = 1
-			n = 1
-			GeneralData =as.data.frame(0)
-			if (nrow(GeneralData) == 1){
-
-			}
-
-			lim = lim + 1
-		}
-		
-
-
-		j=j+1
-	}
-
-
+a=0
+while(i<=nrow(Titulos)){
+	a<-a+length(str_subset(Cabecalho,Titulos[i]))
+	Titulos[i,2]<-a
 	i=i+1
+}
+DataBaseBonds = matrix()
+while (n_pasta <= length(list.files(getwd(),full.names = FALSE, recursive = FALSE))){
+	while (n_cabecalho <= length(str_subset(Cabecalho,Titulos[n_pasta,2]))){  #acho que arrumei o while para andar so o necessario da array do cabecalho
+		n_excel=1
+		while (n_excel<=length(list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE))){
+			n_abas = 1
+			while (n_abas <= length(excel_sheets(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE)[n_excel], sep="/"))))){
+				if(Cabecalho[n_cabecalho]==){
+
+				}
+				
+				substr(Cabecalho[n_cabecalho], 1,nchar(as.matrix(Cabecalho[n_cabecalho]))-11)
+
+				n_abas = n_abas + 1
+			}
+			n_excel=n_excel+1
+		}
+		#salvar o n_cabecalho
+		n_cabecalho = n_cabecalho + 1
+	}
+	n_pasta = n_pasta + 1
 }
 
 
 
-function vencimentos(dir){
+
+			#read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E"))
+
+			#names(read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2]
+			#nData = 1
+			#n = 1
+			#GeneralData =as.data.frame(0)
+			#if (nrow(GeneralData) == 1){
+			#}
+
+
+
+
+
+
+
+
+
+
+
+
+
+vencimentos<- function(diretorio){
 	DataNames = matrix()
 	i=1
-	while (i <= length(list.files(dir,full.names = FALSE, recursive = FALSE))){
+	while (i <= length(list.files(diretorio,full.names = FALSE, recursive = FALSE))){
 		j=1
-		while (j<=length(list.files(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE))){
+		while (j<=length(list.files(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE))){
 
 			lim = 1
-			while (lim <= length(excel_sheets(paste(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/")))){		
-				if (nchar(names(read_xls(paste(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2])>=6){
-					DataNames = rbind(DataNames,paste(list.files(dir,full.names = FALSE, recursive = FALSE)[i],names(read_xls(paste(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2],sep=" "))
+			while (lim <= length(excel_sheets(paste(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/")))){		
+				if (nchar(names(read_xls(paste(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2])>=6){
+					DataNames = rbind(DataNames,paste(list.files(diretorio,full.names = FALSE, recursive = FALSE)[i],names(read_xls(paste(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2],sep=" "))
 					} else{
-					DataNames = rbind(DataNames, paste(list.files(dir,full.names = FALSE, recursive = FALSE)[i],format(excel_numeric_to_date(as.numeric(names(read_xls(paste(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2])),"%d/%m/%Y"),sep=" "))
+					DataNames = rbind(DataNames, paste(list.files(diretorio,full.names = FALSE, recursive = FALSE)[i],format(excel_numeric_to_date(as.numeric(names(read_xls(paste(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(diretorio,list.files(diretorio,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2])),"%d/%m/%Y"),sep=" "))
 					}
-				#names(read_xls(paste(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2]
-				#DataNames = rbind(DataNames, paste(list.files(dir,full.names = FALSE, recursive = FALSE)[i],excel_numeric_to_date(as.numeric(names(read_xls(paste(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2])),sep=" "))
-				#DataNames = rbind(DataNames,paste(list.files(dir,full.names = FALSE, recursive = FALSE)[i],names(read_xls(paste(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(dir,list.files(dir,full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2],sep=" "))
 				lim = lim + 1
 			}
 			j=j+1
@@ -83,11 +102,6 @@ function vencimentos(dir){
 	DataNames<-na.omit(DataNames)
 	DataNames<-DataNames[!duplicated(DataNames),]
 	return(DataNames)
-
-
-str_sub(DataNames, end=6)
-
-	#Corrigir as datas com o janitor function excel_numeric_to_date(40000). Usar substring e remontar a string com a data no formato certo
 }
 
 
