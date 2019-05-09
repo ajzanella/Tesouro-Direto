@@ -19,7 +19,7 @@ library(janitor)
 FileAddress<-"C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase"
 
 setwd(paste(FileAddress, "Historic", sep="/"))
-
+Start<-Sys.time()
 ###Functions###
 
 
@@ -96,7 +96,9 @@ while(i<=nrow(Titulos)){
   Titulos[i,2]<-a
   i=i+1
 }
+AllDataBase = matrix(ncol=6)
 while (n_pasta <= length(list.files(getwd(),full.names = FALSE, recursive = FALSE))){
+  DataBaseBondsTypes = matrix(ncol=6)
   while (n_cabecalho <= as.numeric(Titulos[n_pasta,2])){  #acho que arrumei o while para andar so o necessario da array do cabecalho
     DataBaseBonds = matrix(ncol=5)#com mesmo numero de colunas
     n_excel = 1
@@ -127,41 +129,26 @@ while (n_pasta <= length(list.files(getwd(),full.names = FALSE, recursive = FALS
       n_excel=n_excel+1
     }
     #salvar o arquivo
-    write.table(na.omit(DataBaseBonds), file=paste(paste(FileAddress,paste(list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta],FileName,sep=" "),sep="/"),".txt", sep=""), sep="\t", dec=",",row.names = FALSE, col.names = TRUE, quote = FALSE)
+    #write.table(na.omit(DataBaseBonds), file=paste(paste(FileAddress,paste(list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta],FileName,sep=" "),sep="/"),".txt", sep=""), sep="\t", dec=",",row.names = FALSE, col.names = TRUE, quote = FALSE)
+    DataBaseBonds<-na.omit(DataBaseBonds)
+    DataBaseBonds<-cbind(matrix(Cabecalho[n_cabecalho],nrow=nrow(DataBaseBonds),ncol=1),DataBaseBonds)
+    DataBaseBondsTypes<-na.omit(rbind(DataBaseBondsTypes,DataBaseBonds))
     n_cabecalho = n_cabecalho + 1
     rm(DataBaseBonds)
     rm(CurrentCabecalho)
     rm(CurrentData)
   }
+  AllDataBase<-na.omit(rbind(AllDataBase,DataBaseBondsTypes))
+  colnames(AllDataBase)<-c("Titulos e Vencimento", "Data", "Taxa Compra", "Taxa Venda", "PU Compra", "PU Venda")
+  rm(DataBaseBondsTypes)
   n_pasta = n_pasta + 1
 }
 
+write.table(AllDataBase,file="C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Teste.txt", dec=",",sep="\t",row.names = FALSE, col.names = TRUE, quote = FALSE)
 
+Finish<-Sys.time()
 
+Finish-Start
 
-write.table(count_Geral,file="C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Teste.txt",dec=",",row.names = FALSE, col.names = TRUE, quote = FALSE)
-
-
-
-
-###Nao estou entendendo pq esta pulando os cabecalhos e nao esta olhando todas as camadas####
-
-
-
-
-
-
-#Datadentro do arquivo de excel
-#format(excel_numeric_to_date(as.numeric(names(read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE)[n_cabecalho], sep="/"),n_excel, range = cell_cols("A:E")))[2])),"%d/%m/%Y")
-#read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE)[n_cabecalho], sep="/"),n_excel, range = cell_cols("A:E"))[1,]
-#nrow(read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE)[n_cabecalho], sep="/"),n_excel, range = cell_cols("A:E")))
-
-#a<-read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE)[n_cabecalho], sep="/"),n_excel, range = cell_cols("A:E"))
-
-
-#paste(list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta],format(excel_numeric_to_date(as.numeric(names(read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE)[n_cabecalho], sep="/"),n_excel, range = cell_cols("A:E")))[2])),"%d/%m/%Y"),sep=" ")
-
-
-#read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE)[n_cabecalho], sep="/"),n_excel, range = cell_cols("A:E"))
-
-#names(read_xls(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[i], sep="/"),full.names = FALSE, recursive = FALSE)[j], sep="/"),lim, range = cell_cols("A:E")))[2]
+###Falta transformar os valores em numeros para poder salvar com a formatacao de decimal.
+#  Falta ordenar por data no inicio ou ordenar pelo titulo/vencimento e data, pois alguns ajustes foram feitos e mudou a ordem####

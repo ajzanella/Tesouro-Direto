@@ -5,7 +5,7 @@
 library(Hmisc)
 library(date)
 library(zoo)
-memory.limit(size = 4000)
+#memory.limit(size = 4000)
 library(sqldf)
 library(stringr)
 library(XML)
@@ -37,17 +37,18 @@ while (n_pasta <= length(list.files(getwd(),full.names = FALSE, recursive = FALS
 		while (n_excel<=length(list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE))){
 			n_abas = 1
 			while (n_abas <= length(excel_sheets(paste(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),list.files(paste(getwd(),list.files(getwd(),full.names = FALSE, recursive = FALSE)[n_pasta], sep="/"),full.names = FALSE, recursive = FALSE)[n_excel], sep="/"))))){
-				if(Cabecalho[n_cabecalho]==){
-
+				if(Cabecalho[n_cabecalho]=="?????????"){
+					#Criar a base de dados para empilhar e depois salvar
+					DataBaseBonds = rbind(DataBaseBonds,"?????????????")
 				}
 				
-				substr(Cabecalho[n_cabecalho], 1,nchar(as.matrix(Cabecalho[n_cabecalho]))-11)
+				#substr(Cabecalho[n_cabecalho], 1,nchar(as.matrix(Cabecalho[n_cabecalho]))-11)
 
 				n_abas = n_abas + 1
 			}
 			n_excel=n_excel+1
 		}
-		#salvar o n_cabecalho
+		#salvar o arquivo
 		n_cabecalho = n_cabecalho + 1
 	}
 	n_pasta = n_pasta + 1
