@@ -143,6 +143,15 @@ while (n_pasta <= length(list.files(getwd(),full.names = FALSE, recursive = FALS
   rm(DataBaseBondsTypes)
   n_pasta = n_pasta + 1
 }
+#configurar a base para os formatos corretos
+AllDataBase<-as.data.frame(AllDataBase)
+AllDataBase[,2]<-as.Date(paste(substring(AllDataBase[,2],1,2), substring(AllDataBase[,2],4,5), substring(AllDataBase[,2],7,10),sep="/"), "%d/%m/%Y")
+AllDataBase[,3]<-format(as.numeric(as.character(AllDataBase[,3])), digits=10)
+AllDataBase[,4]<-format(as.numeric(as.character(AllDataBase[,4])), digits=10)
+AllDataBase[,5]<-format(as.numeric(as.character(AllDataBase[,5])), digits=5)
+AllDataBase[,6]<-format(as.numeric(as.character(AllDataBase[,6])), digits=5)
+#ordenar conforme titulo, data para organizar as alteracoes feitas na base
+AllDataBase<-AllDataBase[order(AllDataBase[,1], AllDataBase[,2]),]
 
 write.table(AllDataBase,file="C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Teste.txt", dec=",",sep="\t",row.names = FALSE, col.names = TRUE, quote = FALSE)
 
@@ -152,3 +161,4 @@ Finish-Start
 
 ###Falta transformar os valores em numeros para poder salvar com a formatacao de decimal.
 #  Falta ordenar por data no inicio ou ordenar pelo titulo/vencimento e data, pois alguns ajustes foram feitos e mudou a ordem####
+## DF[ order(DF$DTime , decreasing = TRUE ),]
