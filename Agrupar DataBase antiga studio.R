@@ -1,6 +1,7 @@
 #Abrir o site Tesouro direto e retirar informações dos valores dos titulos. 
 ## Pacotes para execução das funções
 #install.packages("readxl")
+Start<-Sys.time()
 
 library(Hmisc)
 library(date)
@@ -16,15 +17,12 @@ library(rvest)
 library(readxl)
 library(janitor)
 
+
+#Set pathfile
 FileAddress<-"C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase"
-
 setwd(paste(FileAddress, "Historic", sep="/"))
-Start<-Sys.time()
+
 ###Functions###
-
-
-
-
 
 vencimentos<- function(diretorio){
   DataNames = matrix()
@@ -153,7 +151,7 @@ AllDataBase[,6]<-format(as.numeric(as.character(AllDataBase[,6])), digits=5)
 #ordenar conforme titulo, data para organizar as alteracoes feitas na base
 AllDataBase<-AllDataBase[order(AllDataBase[,1], AllDataBase[,2]),]
 
-write.table(AllDataBase,file="C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Teste.txt", dec=",",sep="\t",row.names = FALSE, col.names = TRUE, quote = FALSE)
+write.table(AllDataBase,file=paste(FileAddress,"CompletedDataBase.txt",sep="/"), dec=",",sep="\t",row.names = FALSE, col.names = TRUE, quote = FALSE)
 
 Finish<-Sys.time()
 
