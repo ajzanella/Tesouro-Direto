@@ -23,7 +23,8 @@ library(rvest)
 # 2 jeito e mais interessante
 
 url="http://www.tesouro.fazenda.gov.br/tesouro-direto-precos-e-taxas-dos-titulos"
-setwd("C:/Users/angelo/GitAngelo/R/Titulos Publicos")
+#setwd("C:/Users/angelo/GitAngelo/R/Titulos Publicos")
+setwd("C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase")
 
 page = read_html(url)
 Tesouro.nodes = html_nodes(page,'.camposTesouroDireto')
