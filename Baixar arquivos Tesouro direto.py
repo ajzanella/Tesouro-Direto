@@ -30,39 +30,39 @@ path = a['href']
 name = a.string
 download_url = base_url + path
 ssl._create_default_https_context = ssl._create_unverified_context
-urllib.request.urlretrieve(download_url, "home/ubuntu/git_workspace/Tesouro-Direto/DataBase/Historic/LFT/{}_%s.xls".format(name) %(x))
+urllib.request.urlretrieve(download_url, "C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Historic/LFT/{}_%s.xls".format(name) %(x))
 
 a = div.find_all('a')[1]
 path = a['href']
 name = a.string
 download_url = base_url + path
 ssl._create_default_https_context = ssl._create_unverified_context
-urllib.request.urlretrieve(download_url, "home/ubuntu/git_workspace/Tesouro-Direto/DataBase/Historic/LTN/{}_%s.xls".format(name) %(x))
+urllib.request.urlretrieve(download_url, "C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Historic/LTN/{}_%s.xls".format(name) %(x))
 
 a = div.find_all('a')[2]
 path = a['href']
 name = a.string
 download_url = base_url + path
 ssl._create_default_https_context = ssl._create_unverified_context
-urllib.request.urlretrieve(download_url, "home/ubuntu/git_workspace/Tesouro-Direto/DataBase/Historic/NTN-C/{}_%s.xls".format(name) %(x))
+urllib.request.urlretrieve(download_url, "C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Historic/NTN-C/{}_%s.xls".format(name) %(x))
 
 a = div.find_all('a')[3]
 path = a['href']
 name = a.string
 download_url = base_url + path
 ssl._create_default_https_context = ssl._create_unverified_context
-urllib.request.urlretrieve(download_url, "home/ubuntu/git_workspace/Tesouro-Direto/DataBase/Historic/NTN-B/{}_%s.xls".format(name) %(x))
+urllib.request.urlretrieve(download_url, "C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Historic/NTN-B/{}_%s.xls".format(name) %(x))
 
 a = div.find_all('a')[4]
 path = a['href']
 name = a.string
 download_url = base_url + path
 ssl._create_default_https_context = ssl._create_unverified_context
-urllib.request.urlretrieve(download_url, "home/ubuntu/git_workspace/Tesouro-Direto/DataBase/Historic/NTN-BPrincipal/{}_%s.xls".format(name) %(x))
+urllib.request.urlretrieve(download_url, "C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Historic/NTN-BPrincipal/{}_%s.xls".format(name) %(x))
 
 a = div.find_all('a')[5]
 path = a['href']
 name = a.string
 download_url = base_url + path
 ssl._create_default_https_context = ssl._create_unverified_context
-urllib.request.urlretrieve(download_url, "home/ubuntu/git_workspace/Tesouro-Direto/DataBase/Historic/NTN-F/{}_%s.xls".format(name) %(x))
+urllib.request.urlretrieve(download_url, "C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase/Historic/NTN-F/{}_%s.xls".format(name) %(x))
