@@ -1,0 +1,11 @@
+Salary	Position	Level
+45000	Business Analyst	1
+50000	Junior Consultant	2
+60000	Senior Consultant	3
+80000	Manager	4
+110000	Country Manager	5
+150000	Region Manager	6
+200000	Partner	7
+300000	Senior Partner	8
+500000	C-level	9
+1000000	CEO	10

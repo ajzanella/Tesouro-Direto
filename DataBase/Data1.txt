@@ -1,0 +1,11 @@
+Purchased	Country	Age	Salary
+No	France	44	72000
+Yes	Spain	27	48000
+No	Germany	30	54000
+No	Spain	38	61000
+Yes	Germany	40	
+Yes	France	35	58000
+No	Spain		52000
+Yes	France	48	79000
+No	Germany	50	83000
+Yes	France	37	67000
