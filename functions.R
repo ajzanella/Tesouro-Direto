@@ -7,14 +7,14 @@ library(AutoModel)
 #library(caret)
 #library(leaps)
 library(MASS)
-
+library(e1071)
 
 #summary(reg)$r.squared
 #R Squared adj
 #summary(reg)$adj.r.squared
 #p-value
 #summary(reg)$coefficients[,4]
-pvalue<-0.05
+
 
 SimpleLinearRegression<- function(DataBase, pvalue){
   correctnames<-matrix(0,nrow = ncol(DataBase), ncol = 2)
@@ -109,4 +109,47 @@ SimpleLinearRegression<- function(DataBase, pvalue){
   
   
   return(listaretorno)
+}
+
+SVR<- function(DataBase){
+
+  training_set<-DataBase[,-2]
+  #set.seed(123)
+  #split = sample.split(DataBase[,1], SplitRatio = 0.8)
+  #training_set = subset(DataBase, split == TRUE)
+  #test_set = subset(DataBase, split == FALSE)  
+  
+  regressor = svm(formula = Salary ~ .,
+                  data = training_set,
+                  type = 'eps-regression',
+                  kernel = 'radial')
+  
+  # Predicting a new result
+  y_pred = predict(regressor, data.frame(Level = 6.5))
+  
+  # Visualising the SVR results
+  # install.packages('ggplot2')
+  
+  ggplot() +
+    geom_point(aes(x = training_set$Level, y = training_set$Salary),
+               colour = 'red') +
+    geom_line(aes(x = training_set$Level, y = predict(regressor, newdata = training_set)),
+              colour = 'blue') +
+    ggtitle('Truth or Bluff (SVR)') +
+    xlab('Level') +
+    ylab('Salary')
+  
+  # Visualising the SVR results (for higher resolution and smoother curve)
+  # install.packages('ggplot2')
+  library(ggplot2)
+  x_grid = seq(min(training_set$Level), max(training_set$Level), 0.1)
+  ggplot() +
+    geom_point(aes(x = training_set$Level, y = training_set$Salary),
+               colour = 'red') +
+    geom_line(aes(x = x_grid, y = predict(regressor, newdata = data.frame(Level = x_grid))),
+              colour = 'blue') +
+    ggtitle('Truth or Bluff (SVR)') +
+    xlab('Level') +
+    ylab('Salary')
+
 }

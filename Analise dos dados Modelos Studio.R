@@ -8,7 +8,7 @@ setwd(paste(FileAddress,"DataBase",sep="/"))
 
 source(file=paste(FileAddress,"functions.R",sep="/"))
 
-DataBase<-read.table(paste(getwd(),"Data3.txt", sep="/"),header = TRUE, sep="\t", dec=".")
+DataBase<-read.table(paste(getwd(),"Data5.txt", sep="/"),header = TRUE, sep="\t", dec=".")
 #convert factor to date
 #######DataBase[,2]<-as.Date(DataBase[,2])
 

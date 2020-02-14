@@ -22,15 +22,21 @@ library(reticulate)
 
 #need to install packages from PY on PC
 #run a script in python on R
-use_python("C:/Users/Administrator/AppData/Local/Programs/Python/Python37/python.exe", required = FALSE)
+
+#use_python("C:/Users/ajzan/AppData/Local/Programs/Python/Python37/python.exe", required = FALSE)
+
 #download database from website (xlsx per year)
-py_run_file("C:/Users/Administrator/Documents/GitHub/Tesouro-Direto/Baixar arquivos Tesouro direto.py", local = TRUE, convert = FALSE)
+
+#py_run_file("C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/Baixar arquivos Tesouro direto.py", local = TRUE, convert = FALSE)
+
+###########nao esta funcionando a funcao request pelo r, entao vou criar uma tarefa para baixar o arquivo automaticamente
+
 #
 
 #to call another script in R, use source("filename.R")
 
 #Set pathfile
-FileAddress<-"C:/Users/Administrator/Documents/GitHub/Tesouro-Direto/DataBase"
+FileAddress<-"C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/DataBase"
 setwd(paste(FileAddress, "Historic", sep="/"))
 
 ###Functions###
