@@ -3,6 +3,8 @@ import requests
 import urllib.request
 from bs4 import BeautifulSoup
 import ssl
+import certifi
+
 
 base_url = "https://sisweb.tesouro.gov.br/apex/"
 query = "f?p=2031:2"

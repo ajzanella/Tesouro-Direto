@@ -23,11 +23,11 @@ library(reticulate)
 #need to install packages from PY on PC
 #run a script in python on R
 
-#use_python("C:/Users/ajzan/AppData/Local/Programs/Python/Python37/python.exe", required = FALSE)
+use_python("C:/Users/ajzan/AppData/Local/Programs/Python/Python37/python.exe", required = FALSE)
 
 #download database from website (xlsx per year)
 
-#py_run_file("C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/Baixar arquivos Tesouro direto.py", local = TRUE, convert = FALSE)
+py_run_file("C:/Users/ajzan/Documents/GitHub/Tesouro-Direto/Baixar arquivos Tesouro direto.py", local = TRUE, convert = FALSE)
 
 ###########nao esta funcionando a funcao request pelo r, entao vou criar uma tarefa para baixar o arquivo automaticamente
 
@@ -161,10 +161,10 @@ while (n_pasta <= length(list.files(getwd(),full.names = FALSE, recursive = FALS
 #configurar a base para os formatos corretos
 AllDataBase<-as.data.frame(AllDataBase)
 AllDataBase[,2]<-as.Date(paste(substring(AllDataBase[,2],1,2), substring(AllDataBase[,2],4,5), substring(AllDataBase[,2],7,10),sep="/"), "%d/%m/%Y")
-AllDataBase[,3]<-format(as.numeric(as.character(AllDataBase[,3])), digits=10)
-AllDataBase[,4]<-format(as.numeric(as.character(AllDataBase[,4])), digits=10)
-AllDataBase[,5]<-format(as.numeric(as.character(AllDataBase[,5])), digits=5)
-AllDataBase[,6]<-format(as.numeric(as.character(AllDataBase[,6])), digits=5)
+AllDataBase[,3]<-as.numeric(as.character(AllDataBase[,3]))
+AllDataBase[,4]<-as.numeric(as.character(AllDataBase[,4]))
+AllDataBase[,5]<-as.numeric(as.character(AllDataBase[,5]))
+AllDataBase[,6]<-as.numeric(as.character(AllDataBase[,6]))
 #ordenar conforme titulo, data para organizar as alteracoes feitas na base
 AllDataBase<-AllDataBase[order(AllDataBase[,1], AllDataBase[,2]),]
 
@@ -174,6 +174,4 @@ Finish<-Sys.time()
 
 Finish-Start
 
-###Falta transformar os valores em numeros para poder salvar com a formatacao de decimal.
-#  Falta ordenar por data no inicio ou ordenar pelo titulo/vencimento e data, pois alguns ajustes foram feitos e mudou a ordem####
-## DF[ order(DF$DTime , decreasing = TRUE ),]
+
