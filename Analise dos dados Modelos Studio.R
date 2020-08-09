@@ -1,3 +1,5 @@
+r.createRTerm
+
 #Functions deep learning (Statistics Model)
 library(caTools)
 library(ggplot2)
@@ -80,4 +82,4 @@ i=1
 #linearmodel (best model)
 SimpleLinearRegression(DataBase, 0.05)
 
-
+SVR(DataBase)

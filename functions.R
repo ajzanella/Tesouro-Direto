@@ -8,6 +8,7 @@ library(AutoModel)
 #library(leaps)
 library(MASS)
 library(e1071)
+library(YieldCurve)
 
 #summary(reg)$r.squared
 #R Squared adj
@@ -152,4 +153,22 @@ SVR<- function(DataBase){
     xlab('Level') +
     ylab('Salary')
 
+}
+
+YieldCurve<-function(DataBase){
+  
+  
+  #separar por tipo de titulo e calcular a taxa dos que nao tem.
+  
+Datamenor<-DataBase[-1,2]
+PUVendaPost<-DataBase[-1,6]
+PUVendaAnt<-DataBase[-length(DataBase[,6]),6]
+
+
+
+BaseYield<-cbind(Datamenor, PUVendaPost/PUVendaAnt)
+  
+  head(BaseYield)
+  
+  
 }

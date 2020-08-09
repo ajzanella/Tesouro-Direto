@@ -8,4 +8,6 @@ setwd(paste(FileAddress,"DataBase",sep="/"))
 
 source(file=paste(FileAddress,"functions.R",sep="/"))
 
-DataBase<-read.table(paste(getwd(),"Data5.txt", sep="/"),header = TRUE, sep="\t", dec=".")
+DataBase<-read.table(paste(getwd(),"CompletedDataBase.txt", sep="/"),header = TRUE, sep="\t", dec=",")
+
+head(DataBase)
